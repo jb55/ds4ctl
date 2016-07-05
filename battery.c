@@ -191,17 +191,17 @@ int main(int argc, char* argv[]) {
         write_color(device, "global", 1);
       }
 
-      if (controller.capacity <= 25) {
+      if (controller.capacity < 25) {
         if (!write_color(device, "red", 10)) fatal();
         if (!write_color(device, "green", 0)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
       }
-      else if (controller.capacity <= 50) {
+      else if (controller.capacity < 50) {
         if (!write_color(device, "red", 10)) fatal();
         if (!write_color(device, "green", 5)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
       }
-      else if (controller.capacity <= 75 ) {
+      else if (controller.capacity < 75 ) {
         if (!write_color(device, "red", 10)) fatal();
         if (!write_color(device, "green", 10)) fatal();
         if (!write_color(device, "blue", 0)) fatal();

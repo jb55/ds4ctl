@@ -191,19 +191,25 @@ int main(int argc, char* argv[]) {
         write_color(device, "global", 1);
       }
 
-      if (!write_color(device, "red", scale * (i == 0 ? 1 : 0))) {
-        globfree(&pglob);
-        fatal();
+      if (controller.capacity <= 25) {
+        if (!write_color(device, "red", 1)) fatal();
+        if (!write_color(device, "green", 0)) fatal();
+        if (!write_color(device, "blue", 0)) fatal();
       }
-
-      if (!write_color(device, "green", scale * (i == 1 ? 1 : 0))) {
-        globfree(&pglob);
-        fatal();
+      else if (controller.capacity <= 50) {
+        if (!write_color(device, "red", 10)) fatal();
+        if (!write_color(device, "green", 5)) fatal();
+        if (!write_color(device, "blue", 0)) fatal();
       }
-
-      if (!write_color(device, "blue", scale * (i == 2 ? 1 : 0) )) {
-        globfree(&pglob);
-        fatal();
+      else if (controller.capacity <= 75 ) {
+        if (!write_color(device, "red", 1)) fatal();
+        if (!write_color(device, "green", 1)) fatal();
+        if (!write_color(device, "blue", 0)) fatal();
+      }
+      else if (controller.capacity <= 100 ) {
+        if (!write_color(device, "red", 0)) fatal();
+        if (!write_color(device, "green", 1)) fatal();
+        if (!write_color(device, "blue", 0)) fatal();
       }
     }
   }

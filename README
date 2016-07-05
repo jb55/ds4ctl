@@ -3,3 +3,14 @@ ds4ctl
 ======
 
 Change DS4 leds based on the current power capacity
+
+  * <= 100%: green
+  * <=  75%: yellow
+  * <=  50%: orange
+  * <=  25%: red
+  * <=  10%: blinking red
+
+TODO
+====
+
+  * Customization

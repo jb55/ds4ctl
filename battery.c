@@ -206,10 +206,15 @@ int main(int argc, char* argv[]) {
         if (!write_color(device, "green", 10)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
       }
-      else if (controller.capacity <= 100 ) {
+      else if (controller.capacity < 100 ) {
         if (!write_color(device, "red", 0)) fatal();
         if (!write_color(device, "green", 10)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
+      }
+      else if (controller.capacity >= 100 ) {
+        if (!write_color(device, "red", 0)) fatal();
+        if (!write_color(device, "green", 0)) fatal();
+        if (!write_color(device, "blue", 10)) fatal();
       }
     }
   }

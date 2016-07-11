@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
 
   if (pglob.gl_pathc == 0) {
     sprintf(err, "Could not enumerate any input devices");
-    fatal();
+    return 0;
   }
 
   for (size_t i = 0; i < pglob.gl_pathc; ++i) {

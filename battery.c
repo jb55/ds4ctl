@@ -98,7 +98,7 @@ int write_trigger(const char *device, const char *trigger) {
     return 0;
   }
 
-  fprintf(f, trigger);
+  fprintf(f, "%s\n", trigger);
 
   fclose(f);
 

@@ -179,7 +179,7 @@ int main(int argc, char* argv[]) {
       /* controller.capacity = 20; */
       float percent = controller.capacity / 100.f;
       printf("\ndevice: %s\n", device);
-      printf("capacity: %d%\n", controller.capacity);
+      printf("capacity: %d\n", controller.capacity);
       float scale = 255 * percent;
       printf("writing %f\n", scale);
 

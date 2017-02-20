@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <glob.h>
 
+static const int intensity = 1;
+
 struct controller {
   int r, g, b;
   int capacity;
@@ -192,29 +194,29 @@ int main(int argc, char* argv[]) {
       }
 
       if (controller.capacity < 25) {
-        if (!write_color(device, "red", 10)) fatal();
+        if (!write_color(device, "red", intensity)) fatal();
         if (!write_color(device, "green", 0)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
       }
       else if (controller.capacity < 50) {
-        if (!write_color(device, "red", 10)) fatal();
+        if (!write_color(device, "red", intensity)) fatal();
         if (!write_color(device, "green", 5)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
       }
       else if (controller.capacity < 75 ) {
-        if (!write_color(device, "red", 10)) fatal();
-        if (!write_color(device, "green", 10)) fatal();
+        if (!write_color(device, "red", intensity)) fatal();
+        if (!write_color(device, "green", intensity)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
       }
       else if (controller.capacity < 100 ) {
         if (!write_color(device, "red", 0)) fatal();
-        if (!write_color(device, "green", 10)) fatal();
+        if (!write_color(device, "green", intensity)) fatal();
         if (!write_color(device, "blue", 0)) fatal();
       }
       else if (controller.capacity >= 100 ) {
         if (!write_color(device, "red", 0)) fatal();
         if (!write_color(device, "green", 0)) fatal();
-        if (!write_color(device, "blue", 10)) fatal();
+        if (!write_color(device, "blue", intensity)) fatal();
       }
     }
   }

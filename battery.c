@@ -10,23 +10,23 @@ struct controller {
   char uniq[20];
 };
 
-static char err[256];
+static char err[1024];
 
 int color_path(const char *device, const char *color, char *path) {
   glob_t pglob;
   static char filename[256];
 
-  sprintf(filename, "%s/device/device/leds/*:%s", device, color);
+  snprintf(filename, sizeof(filename), "%s/device/device/leds/*:%s", device, color);
   glob(filename, 0, 0, &pglob);
 
   if (pglob.gl_pathc == 0) {
-    sprintf(err, "failed to glob '%s'", filename);
+    snprintf(err, sizeof(err), "failed to glob '%s'", filename);
     globfree(&pglob);
     return 0;
   }
 
   if (pglob.gl_pathc > 1) {
-    sprintf(err, "got more than one glob in '%s'", filename);
+    snprintf(err, sizeof(err), "got more than one glob in '%s'", filename);
     globfree(&pglob);
     return 0;
   }
@@ -40,9 +40,9 @@ int color_path(const char *device, const char *color, char *path) {
 int write_color(const char *device, const char *color, int val) {
   FILE *f;
   static char path[256];
-  static char filename[256];
+  static char filename[512];
   if (!color_path(device, color, path)) return 0;
-  sprintf(filename, "%s/brightness", path);
+  snprintf(filename, sizeof(filename), "%s/brightness", path);
 
   f = fopen(filename, "w+");
 
@@ -52,7 +52,7 @@ int write_color(const char *device, const char *color, int val) {
   }
 
   if (!fprintf(f, "%d", val)) {
-    sprintf(err, "could not write brightness value to file '%s'", filename);
+    snprintf(err, sizeof(err), "could not write brightness value to file '%s'", filename);
     fclose(f);
     return 0;
   }
@@ -64,7 +64,7 @@ int write_color(const char *device, const char *color, int val) {
 int read_color(const char *device, const char *color, int *val) {
   FILE *f;
   static char path[256];
-  static char filename[256];
+  static char filename[512];
   if (!color_path(device, color, path)) return 0;
   sprintf(filename, "%s/brightness", path);
 
@@ -88,7 +88,7 @@ int read_color(const char *device, const char *color, int *val) {
 int write_trigger(const char *device, const char *trigger) {
   FILE *f;
   static char path[256];
-  static char filename[256];
+  static char filename[512];
   if (!color_path(device, "global", path)) return 0;
   sprintf(filename, "%s/trigger", path);
 
@@ -110,7 +110,7 @@ int read_capacity(const char *device, int *capacity) {
   static char filename[256];
   glob_t pglob;
 
-  sprintf(filename, "%s/device/device/power_supply/*/capacity", device);
+  snprintf(filename, sizeof(filename)-1, "%s/device/device/power_supply/*/capacity", device);
   glob(filename, 0, 0, &pglob);
 
   if (pglob.gl_pathc == 0) {

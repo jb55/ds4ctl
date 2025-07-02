@@ -1,3 +1,5 @@
 ds4ctl
 .direnv/
+build.log
+.buildcmd
 .envrc
